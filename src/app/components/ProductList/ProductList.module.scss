@@ -1,0 +1,17 @@
+@use '../../style/variables' as *;
+@use '../../style/mixins' as *;
+
+.container {
+  margin-bottom: 2rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: $spacing-lg;
+
+  @include respond-to('sm') {
+    grid-template-columns: 1fr;
+    gap: $spacing-md;
+  }
+}

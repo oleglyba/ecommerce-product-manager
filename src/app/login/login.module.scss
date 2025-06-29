@@ -1,0 +1,125 @@
+@use '../style/variables' as *;
+@use '../style/mixins' as *;
+
+// Full-page centered container
+.container {
+  min-height: 80vh;
+  @include flex-center;
+  padding: $spacing-xl;
+}
+
+// Login card wrapper
+.loginCard {
+  @include card-base;
+  padding: 3rem;
+  width: 100%;
+  max-width: 400px;
+}
+
+// Header section inside login card
+.header {
+  text-align: center;
+  margin-bottom: $spacing-xl;
+
+  h1 {
+    @include heading-xl;
+    margin-bottom: $spacing-sm;
+  }
+
+  p {
+    @include text-muted;
+    font-size: $font-size-base;
+  }
+}
+
+// Login form spacing
+.form {
+  margin-bottom: $spacing-lg;
+}
+
+// Inline error alert
+.errorAlert {
+  @include alert-error;
+  gap: $spacing-sm;
+  padding: 0.75rem;
+
+  span:first-child {
+    font-size: $font-size-lg;
+  }
+}
+
+// Divider with centered text
+.divider {
+  position: relative;
+  text-align: center;
+  margin: $spacing-lg 0;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background-color: $gray-medium;
+  }
+
+  span {
+    position: relative;
+    z-index: 1;
+    background: $white;
+    color: $text-muted;
+    padding: 0 $spacing-md;
+    font-size: $font-size-base;
+  }
+}
+
+// Demo credentials toggle link
+.toggleDemo {
+  background: none;
+  border: none;
+  color: $primary-color;
+  font-size: $font-size-base;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 0;
+
+  &:hover {
+    color: $primary-hover;
+  }
+}
+
+// Demo credentials box
+.credentials {
+  background: $gray-light;
+  border: 1px solid $gray-medium;
+  border-radius: $radius-md;
+  padding: $spacing-md;
+  margin-top: $spacing-sm;
+  text-align: left;
+
+  p {
+    color: $text-dark;
+    font-size: $font-size-sm;
+    margin: $spacing-xs 0;
+    font-family: 'Monaco', 'Consolas', monospace;
+  }
+}
+
+// Note text styling
+.note {
+  color: $text-muted !important;
+  font-style: italic;
+  margin-top: $spacing-sm !important;
+  font-family: inherit !important;
+}
+
+// Responsive adjustments for very small screens
+@media (max-width: 480px) {
+  .container {
+    padding: $spacing-md;
+  }
+  .loginCard {
+    padding: 2rem;
+  }
+}

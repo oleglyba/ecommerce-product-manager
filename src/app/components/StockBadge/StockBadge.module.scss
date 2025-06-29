@@ -1,0 +1,18 @@
+@use '../../style/mixins' as *;
+
+// Stock status badge
+.stockBadge {
+  @include badge-base;
+
+  &.inStock {
+    @include badge-success;
+  }
+
+  &.lowStock {
+    @include badge-warning;
+  }
+
+  &.outOfStock {
+    @include badge-danger;
+  }
+}

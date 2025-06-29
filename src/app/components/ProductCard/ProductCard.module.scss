@@ -1,0 +1,307 @@
+@use '../../style/variables' as *;
+@use '../../style/mixins' as *;
+
+.card {
+  position: relative;
+  @include card-base;
+  transition: all 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  &:hover {
+    transform: translateY(-2px);
+    @include card-elevated;
+  }
+}
+
+.cardLink {
+  text-decoration: none;
+  color: inherit;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.imageContainer {
+  @include image-container(200px);
+
+  @include respond-to('sm') {
+    height: 180px;
+  }
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+
+  .card:hover & {
+    transform: scale(1.05);
+  }
+}
+
+.discountBadge {
+  @include badge-discount;
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  z-index: 1;
+}
+
+.content {
+  padding: 1rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+
+  @include respond-to('sm') {
+    padding: 0.75rem;
+  }
+}
+
+.header {
+  margin-bottom: 0.75rem;
+}
+
+.title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: $text-dark;
+  margin: 0 0 0.25rem 0;
+  line-height: 1.4;
+  @include text-truncate(2);
+
+  @include respond-to('sm') {
+    font-size: 1rem;
+  }
+}
+
+.brand {
+  font-size: $font-size-base;
+  color: $text-muted;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+}
+
+.description {
+  font-size: $font-size-base;
+  color: #4b5563;
+  line-height: 1.5;
+  margin: 0 0 1rem 0;
+  flex: 1;
+  @include text-truncate(3);
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.stars {
+  color: #fbbf24;
+  font-size: 1rem;
+  letter-spacing: 0.05em;
+}
+
+.ratingValue {
+  font-size: $font-size-base;
+  color: $text-muted;
+  font-weight: 500;
+}
+
+.footer {
+  margin-top: auto;
+}
+
+.pricing {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.price {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: $success-color;
+
+  @include respond-to('sm') {
+    font-size: 1.125rem;
+  }
+}
+
+.originalPrice {
+  font-size: $font-size-base;
+  color: $text-placeholder;
+  text-decoration: line-through;
+}
+
+.stock {
+  margin-bottom: 0.75rem;
+}
+
+.stockBadge {
+  @include badge-base;
+  font-weight: 500;
+
+  &.inStock {
+    @include badge-success;
+  }
+
+  &.lowStock {
+    @include badge-warning;
+  }
+
+  &.outOfStock {
+    @include badge-danger;
+  }
+}
+
+.category {
+  font-size: $font-size-sm;
+  color: $text-muted;
+  background: #f3f4f6;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  display: inline-block;
+  text-transform: capitalize;
+  font-weight: 500;
+}
+
+.actions {
+  padding: 0.75rem 1rem;
+  border-top: 1px solid $gray-medium;
+  background: $gray-light;
+  display: flex;
+  gap: 0.5rem;
+
+  @include respond-to('sm') {
+    padding: 0.5rem 0.75rem;
+    flex-direction: column;
+  }
+}
+
+.actionBtn {
+  flex: 1;
+  padding: 0.5rem 1rem;
+  border-radius: $radius-sm;
+  font-size: $font-size-base;
+  font-weight: 500;
+  text-align: center;
+  text-decoration: none;
+  border: 1px solid;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  @include respond-to('sm') {
+    padding: 0.75rem 1rem;
+  }
+}
+
+.editBtn {
+  background: $primary-color;
+  color: $white;
+  border-color: $primary-color;
+
+  &:hover:not(:disabled) {
+    background: $primary-hover;
+    border-color: $primary-hover;
+  }
+}
+
+.deleteBtn {
+  background: $white;
+  color: $error-color;
+  border-color: $error-color;
+
+  &:hover:not(:disabled) {
+    background: $error-color;
+    color: $white;
+  }
+}
+
+.modal {
+  @include modal-overlay;
+}
+
+.modalContent {
+  @include modal-content;
+
+  h3 {
+    font-size: $font-size-lg;
+    font-weight: 600;
+    color: $text-dark;
+    margin: 0 0 1rem 0;
+  }
+
+  p {
+    color: $text-muted;
+    margin: 0 0 1rem 0;
+    line-height: 1.5;
+
+    &:last-of-type {
+      margin-bottom: 1.5rem;
+    }
+  }
+
+  @include respond-to('sm') {
+    margin: 1rem;
+    padding: 1rem;
+  }
+}
+
+.modalActions {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: flex-end;
+
+  @include respond-to('sm') {
+    flex-direction: column-reverse;
+  }
+}
+
+.cancelBtn,
+.confirmBtn {
+  padding: 0.5rem 1rem;
+  border-radius: $radius-sm;
+  font-size: $font-size-base;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.cancelBtn {
+  background: $white;
+  color: $text-dark;
+  border: 1px solid $gray-medium;
+
+  &:hover:not(:disabled) {
+    background: $gray-light;
+  }
+}
+
+.confirmBtn {
+  background: $error-color;
+  color: $white;
+  border: 1px solid $error-color;
+
+  &:hover:not(:disabled) {
+    background: #b91c1c;
+    border-color: #b91c1c;
+  }
+}

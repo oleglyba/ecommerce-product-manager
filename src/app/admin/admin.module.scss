@@ -1,0 +1,222 @@
+@use '../style/variables' as *;
+@use '../style/mixins' as *;
+
+.container {
+  @include container(1400px, 2rem);
+  min-height: 100vh;
+  background: $gray-light;
+
+  @include respond-to('md') {
+    padding: 1rem;
+  }
+}
+
+.header {
+  @include card-base;
+  padding: 2rem;
+  margin-bottom: 2rem;
+
+  @include respond-to('sm') {
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+}
+
+.headerContent {
+  @include flex-between;
+  gap: 1rem;
+
+  @include respond-to('md') {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.headerText {
+  h1 {
+    @include heading-xl;
+    margin: 0 0 0.25rem 0;
+  }
+
+  p {
+    @include text-muted;
+    font-size: 1rem;
+    margin: 0;
+  }
+}
+
+.addButton {
+  @include button-primary;
+  gap: 0.5rem;
+
+  @include respond-to('md') {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+.addIcon {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.errorAlert {
+  @include alert-error;
+}
+
+.errorIcon {
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.closeError {
+  margin-left: auto;
+  @include close-button;
+  font-size: 1.5rem;
+  line-height: 1;
+
+  &:hover {
+    color: #991b1b;
+  }
+}
+
+.filtersSection {
+  @include card-base;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+
+  @include respond-to('sm') {
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+}
+
+.results {
+  margin-bottom: 1.5rem;
+}
+
+.resultsInfo {
+  p {
+    @include text-muted;
+    font-size: 0.95rem;
+    margin: 0;
+    font-weight: 500;
+  }
+}
+
+.productsGrid {
+  @include responsive-grid(320px, 1.5rem);
+  margin-bottom: 2rem;
+}
+
+.noProducts {
+  @include card-base;
+  padding: 3rem 2rem;
+  text-align: center;
+}
+
+.emptyState {
+  max-width: 400px;
+  margin: 0 auto;
+
+  @include respond-to('sm') {
+    padding: 2rem 1rem;
+  }
+
+  h3 {
+    @include heading-lg;
+    margin: 0 0 0.5rem 0;
+  }
+
+  p {
+    @include text-muted;
+    margin: 0 0 1.5rem 0;
+    line-height: 1.6;
+  }
+}
+
+.emptyIcon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  opacity: 0.6;
+
+  @include respond-to('sm') {
+    font-size: 3rem;
+  }
+}
+
+.emptyActions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  @include respond-to('sm') {
+    flex-direction: column;
+  }
+}
+
+.clearFiltersBtn {
+  @include button-secondary;
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+
+  @include respond-to('sm') {
+    width: 100%;
+    padding: 0.75rem 1rem;
+  }
+}
+
+.addFirstBtn {
+  @include button-primary;
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+
+  @include respond-to('sm') {
+    width: 100%;
+    padding: 0.75rem 1rem;
+  }
+
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 14px 0 rgba(59, 130, 246, 0.25);
+  }
+}
+
+.accessDenied {
+  @include flex-center;
+  min-height: 100vh;
+  background: $gray-light;
+}
+
+.accessDeniedContent {
+  @include card-base;
+  @include card-elevated;
+  padding: 3rem 2rem;
+  text-align: center;
+  max-width: 400px;
+  width: 100%;
+  margin: 2rem;
+
+  h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: $error-color;
+    margin: 0 0 0.5rem 0;
+  }
+
+  p {
+    @include text-muted;
+    margin: 0;
+    line-height: 1.6;
+  }
+}
+
+// Loading skeleton adjustments for admin
+:global(.loading-skeleton) {
+  .skeleton-item {
+    @include card-base;
+  }
+}

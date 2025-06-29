@@ -1,0 +1,121 @@
+@use './style/variables' as *;
+@use './style/mixins' as *;
+
+// Full‐viewport centered container
+.container {
+  min-height: 80vh;
+  @include flex-center;
+  padding: $spacing-xl;
+}
+
+// Hero section wrapper
+.hero {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+// Main title with responsive sizing
+.title {
+  font-size: 3rem;
+  font-weight: 800;
+  color: $text-dark;
+  margin-bottom: $spacing-md;
+  line-height: 1.1;
+
+  @include respond-to('md') {
+    font-size: 2rem;
+  }
+}
+
+// Highlighted text
+.highlight {
+  color: $primary-color;
+}
+
+// Subtitle text
+.subtitle {
+  font-size: $font-size-lg;
+  color: $text-muted;
+  margin-bottom: $spacing-xl;
+  line-height: 1.6;
+
+  @include respond-to('md') {
+    font-size: $font-size-base;
+    margin-bottom: $spacing-lg;
+  }
+}
+
+// Features grid
+.features {
+  @include responsive-grid(280px, $spacing-xl);
+  margin-bottom: $spacing-xl;
+
+  @include respond-to('md') {
+    gap: $spacing-lg;
+    margin-bottom: $spacing-lg;
+  }
+}
+
+// Individual feature card
+.feature {
+  @include card-base;
+  padding: $spacing-xl;
+
+  h3 {
+    font-size: $font-size-base;
+    font-weight: 600;
+    color: $text-dark;
+    margin-bottom: $spacing-sm;
+  }
+
+  p {
+    @include text-muted;
+    font-size: $font-size-sm;
+    line-height: 1.5;
+  }
+}
+
+// Icon above each feature
+.featureIcon {
+  font-size: 2.5rem;
+  margin-bottom: $spacing-md;
+  color: $primary-color;
+}
+
+// Call‐to‐action buttons wrapper
+.cta {
+  display: flex;
+  gap: $spacing-md;
+  justify-content: center;
+  margin-bottom: $spacing-xl;
+
+  @include respond-to('md') {
+    flex-direction: column;
+    align-items: center;
+    gap: $spacing-sm;
+    margin-bottom: $spacing-lg;
+  }
+}
+
+// Demo credentials block
+.credentials {
+  background: $gray-light;
+  border: 1px solid $gray-medium;
+  border-radius: $radius-md;
+  padding: $spacing-lg;
+  margin-top: $spacing-xl;
+
+  h4 {
+    font-size: $font-size-base;
+    font-weight: 600;
+    color: $text-dark;
+    margin-bottom: $spacing-sm;
+  }
+
+  p {
+    @include text-muted;
+    font-size: $font-size-sm;
+    margin: $spacing-xs 0;
+  }
+}

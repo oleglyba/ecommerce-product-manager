@@ -1,0 +1,152 @@
+@use '../../style/variables' as *;
+@use '../../style/mixins' as *;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  @include respond-to('sm') {
+    gap: 0.25rem;
+  }
+}
+
+.pageNumbers {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+
+  @include respond-to('sm') {
+    gap: 0.125rem;
+  }
+}
+
+.pageBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.5rem;
+  height: 2.5rem;
+  padding: 0.5rem;
+  border: 1px solid $gray-medium;
+  background: $white;
+  color: $text-dark;
+  border-radius: $radius-sm;
+  font-size: $font-size-base;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+
+  &:hover:not(:disabled) {
+    background: #f9fafb;
+    border-color: $text-placeholder;
+    color: #111827;
+  }
+
+  @include focus-ring($primary-color);
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background: #f9fafb;
+    color: $text-placeholder;
+  }
+
+  &.active {
+    background: $primary-color;
+    border-color: $primary-color;
+    color: $white;
+    font-weight: 600;
+
+    &:hover {
+      background: $primary-hover;
+      border-color: $primary-hover;
+    }
+  }
+
+  @include respond-to('sm') {
+    min-width: 2rem;
+    height: 2rem;
+    padding: 0.25rem;
+    font-size: $font-size-sm;
+  }
+}
+
+.navBtn {
+  gap: 0.25rem;
+  padding: 0.5rem 0.75rem;
+  min-width: auto;
+
+  .arrow {
+    font-size: 1.125rem;
+    line-height: 1;
+  }
+
+  @include respond-to('sm') {
+    padding: 0.25rem 0.5rem;
+
+    .navText {
+      display: none;
+    }
+
+    .arrow {
+      font-size: 1rem;
+    }
+  }
+}
+
+.dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.5rem;
+  height: 2.5rem;
+  color: $text-placeholder;
+  font-weight: 500;
+  font-size: $font-size-base;
+
+  @include respond-to('sm') {
+    min-width: 2rem;
+    height: 2rem;
+    font-size: $font-size-sm;
+  }
+}
+
+.pageInfo {
+  color: #6b7280;
+  font-size: $font-size-base;
+  font-weight: 500;
+
+  @include respond-to('sm') {
+    font-size: $font-size-sm;
+  }
+}
+
+// Compact layout for extra small screens
+@media (max-width: 480px) {
+  .pagination {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .pageNumbers {
+    order: -1;
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 0.5rem;
+  }
+
+  .navBtn {
+    flex: 1;
+    max-width: 6rem;
+  }
+}

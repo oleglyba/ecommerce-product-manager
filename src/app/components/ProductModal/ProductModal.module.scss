@@ -1,0 +1,247 @@
+@use '../../style/variables' as *;
+@use '../../style/mixins' as *;
+
+// Overlay backdrop
+.overlay {
+  @include modal-overlay;
+  padding: 20px;
+}
+
+// Modal container
+.modal {
+  @include card-base;
+  @include card-modal;
+  width: 100%;
+  max-width: 900px;
+  max-height: 90vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  animation: modalSlideIn 0.3s ease-out;
+}
+
+// Slide-in animation
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+// Modal header
+.header {
+  @include flex-between;
+  padding: 24px 32px;
+  border-bottom: 1px solid $gray-medium;
+  background: $gray-light;
+
+  h2 {
+    margin: 0;
+    font-size: $font-size-xl;
+    font-weight: 600;
+    color: $text-dark;
+  }
+}
+
+// Close button (“×”)
+.closeBtn {
+  @include close-button;
+  font-size: 24px;
+  color: $text-muted;
+
+  &:hover {
+    background: $gray-light;
+    color: $text-dark;
+  }
+}
+
+// Error alert inside modal
+.errorAlert {
+  @include alert-error;
+  padding: 12px 32px;
+
+  .errorIcon {
+    font-size: 1rem;
+  }
+}
+
+// Form area
+.form {
+  flex: 1;
+  overflow-y: auto;
+  padding: 32px;
+}
+
+// Two-column form layout
+.formGrid {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: $spacing-xl;
+
+  @include respond-to('md') {
+    grid-template-columns: 1fr;
+    gap: $spacing-lg;
+  }
+}
+
+// Field groups
+.fieldGroup,
+.leftColumn,
+.rightColumn {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+}
+
+// Labels
+.label {
+  font-weight: 500;
+  color: $text-dark;
+  font-size: $font-size-base;
+}
+
+// Inputs, textareas, selects
+.input,
+.textarea,
+.select {
+  @include input-base;
+  padding: 12px 16px;
+
+  &.error {
+    border-color: $error-color;
+    box-shadow: 0 0 0 3px rgba($error-color, 0.1);
+  }
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.select {
+  cursor: pointer;
+}
+
+// Inline rows
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+
+  @include respond-to('sm') {
+    grid-template-columns: 1fr;
+  }
+}
+
+// Field-level error messages
+.errorMessage {
+  color: $error-color;
+  font-size: $font-size-sm;
+  font-weight: 500;
+}
+
+// Image upload section
+.imageSection {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+}
+
+.imagePreview {
+  @include card-base;
+  border-style: dashed;
+  border-width: 2px;
+  border-color: $gray-medium;
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+
+  img {
+    max-width: 100%;
+    max-height: 180px;
+    object-fit: contain;
+    border-radius: $radius-sm;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .placeholderImage {
+    @include flex-center;
+    flex-direction: column;
+    gap: $spacing-xs;
+    color: $text-placeholder;
+
+    .imageIcon {
+      font-size: 2rem;
+    }
+
+    span:last-child {
+      font-size: $font-size-base;
+      font-weight: 500;
+    }
+  }
+}
+
+// Action buttons footer
+.actions {
+  @include flex-between;
+  gap: 12px;
+  padding: 24px 32px;
+  border-top: 1px solid $gray-medium;
+  background: $gray-light;
+
+  @include respond-to('md') {
+    padding: 20px 24px;
+    flex-direction: column-reverse;
+  }
+
+  @include respond-to('sm') {
+    padding: 16px 20px;
+  }
+}
+
+// Cancel & Save buttons
+.cancelBtn {
+  @include button-secondary;
+  gap: 8px;
+  padding: 12px 24px;
+  font-size: $font-size-base;
+}
+
+.saveBtn {
+  @include button-primary;
+  gap: 8px;
+  padding: 12px 24px;
+  font-size: $font-size-base;
+}
+
+// Spinner for loading state
+.spinner {
+  @include loading-spinner(16px, 2px);
+}
+
+// Responsive tweaks
+@media (max-width: 768px) {
+  .overlay {
+    padding: 10px;
+  }
+  .modal {
+    max-height: 95vh;
+  }
+  .header {
+    padding: 20px 24px;
+    h2 { font-size: $font-size-lg; }
+  }
+  .form {
+    padding: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .imagePreview { min-height: 150px; }
+}
